@@ -3,8 +3,7 @@ import Link from 'next/link'
 import { inject, observer } from 'mobx-react'
 import Clock from './Clock'
 
-@inject('testStore')
-@observer
+@inject('testStore') @observer
 class Page extends React.Component {
 
   render() {

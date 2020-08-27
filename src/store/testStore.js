@@ -1,5 +1,5 @@
 /** 用於記錄各種scroll resize 或 螢幕寬度等狀態 */
-import { action, computed, extendObservable } from 'mobx';
+import { action, extendObservable } from 'mobx';
 import storeAction from './storeAction';
 
 const initState = {
