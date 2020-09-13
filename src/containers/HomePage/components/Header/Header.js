@@ -1,10 +1,13 @@
 import React from 'react';
-import { HeaderContainer,SignUpSpan } from "./Header.styles";
+import { HeaderContainer, SignUpSpan } from "./Header.styles";
 import Link from "next/link";
 import Router from 'next/router';
+import { useStores } from "@store";
 
 
 const Header = () => {
+    const { openModal } = useStores()['LoginModalStore']
+
     return (
         <HeaderContainer>
             <Link href="/signup">
@@ -12,7 +15,9 @@ const Header = () => {
                     Signup
                 </SignUpSpan>
             </Link>
-            <span>
+            <span onClick={() => {
+                openModal()
+            }}>
                 Login
             </span>
         </HeaderContainer>

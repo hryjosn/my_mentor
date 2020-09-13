@@ -51,9 +51,14 @@ const SignUp = () => {
                             </InputDiv>
 
                             <InputDiv>
-                                <Input fullWidth placeholder={"Password"} value={password} onChange={e => {
-                                    paramsUpdate("password", e.target.value)
-                                }}/>
+                                <Input
+                                    fullWidth
+                                    placeholder={"Password"}
+                                    type="password"
+                                    value={password}
+                                    onChange={e => {
+                                        paramsUpdate("password", e.target.value)
+                                    }}/>
                             </InputDiv>
                             <PhoneInputContainer>
                                 <PhoneInput

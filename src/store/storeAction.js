@@ -1,4 +1,5 @@
 import { action } from 'mobx'
+
 /** 共用的 store action */
 export default class storeAction {
     constructor() {
@@ -30,5 +31,11 @@ export default class storeAction {
     /** reset 狀態 */
     @action reset = () => {
         Object.assign(this, this.initState)
+    }
+    @action openModal = () => {
+        this.updateData("visible", true)
+    }
+    @action closeModal = () => {
+        this.reset();
     }
 }

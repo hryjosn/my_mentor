@@ -20,9 +20,14 @@ export const callSignUpUser = postData => request.post('user', postData);
 /** -------------------------- 會員 end -------------------------- */
 /** -------------------------- 餐廳 -------------------------- */
 // /**
-//  * 會員登入 [POST]
+//  * Get all current issue [GET]
 //  */
-export const callGetMyShopInfo = (postData) => get('shop', postData);
+export const callGetAllIssues = () => get('issue');
+/**
+ *  Add new issue [POST]
+ * @returns {Promise<*>}
+ */
+export const callAddNewIssue = (postData) => post('issue', postData);
 
 
 /** -------------------------- 餐廳 end -------------------------- */

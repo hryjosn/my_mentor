@@ -27,7 +27,7 @@ export const post = async (url, data, debug = false, timeout = 6000) => {
                 console.log(response.data);
             }
             if (response.status !== 200) {
-                return response
+                alert(response.data.msg)
             }
             return response.data;
         })
@@ -40,7 +40,7 @@ export const get = async (url, debug = false, timeout = 6000) => {
     const token = localStorage.getItem('token');
     return axios({
         method: 'GET',
-        url: apiUrl + url,
+        url: API_URL + url,
         timeout: timeout, // timeout
         headers: {
             'Content-Type': 'application/json; charset=UTF-8',
@@ -65,7 +65,7 @@ export const get = async (url, debug = false, timeout = 6000) => {
 };
 const catchError = (e) => {
     if (e?.response?.status === 401) {
-        const asyncStorageKeys = localStorage.getAllKeys();
+        const asyncStorageKeys = Object.keys(localStorage);
         if (asyncStorageKeys.length > 0) {
             localStorage.clear();
         }

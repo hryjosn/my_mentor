@@ -1,1 +1,1 @@
-export {default} from '@containers/DefaultPage';
+export {default} from '@containers/HomePage';

@@ -1,38 +1,24 @@
-import App from 'next/app'
 import React from 'react'
-import { fetchInitialStoreState } from '../src/store'
 import { Provider } from 'mobx-react'
 import * as stores from '../src/store'
 import 'mobx-react/batchingForReactDom';
 import 'react-phone-number-input/style.css'
-import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import Head from 'next/head';
 require('dotenv').config();
+import 'draft-js/dist/Draft.css';
 
-class MyMobxApp extends App {
 
-    // Fetching serialized(JSON) store state
-    static async getInitialProps(appContext) {
-        const appProps = await App.getInitialProps(appContext)
-        const initialStoreState = await fetchInitialStoreState()
+export default function MyApp(props) {
+    const { Component, pageProps } = props;
 
-        return {
-            ...appProps,
-            initialStoreState,
-        }
-    }
+    return (
+        <>
+            <Head>
+                <title> My Mentor</title>
+                <meta property="og:title" content=" My Mentor" key="title" />
 
-    // Hydrate serialized state to store
-    // static getDerivedStateFromProps(props, state) {
-    //   state.store.hydrate(props.initialStoreState)
-    //   // return state
-    // }
-
-    render() {
-        const { Component, pageProps } = this.props
-        return (
-
+            </Head>
             <Provider {...stores}>
-
                 <style global jsx>{`              
                   html,
                   body,
@@ -44,10 +30,11 @@ class MyMobxApp extends App {
                 `}</style>
                 <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:700' rel='stylesheet'
                       type='text/css'/>
+                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                 <Component {...pageProps} />
             </Provider>
-        )
-    }
+
+        </>
+    );
 }
 
-export default MyMobxApp
