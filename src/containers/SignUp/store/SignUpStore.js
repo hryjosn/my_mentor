@@ -8,6 +8,7 @@ import Router from 'next/router';
 const initState = {
     params: {
         email: "",
+        name:"",
         password: "",
         phone: "",
     }

@@ -4,7 +4,9 @@ import storeAction from './storeAction';
 
 const initState = {
     snackBarContent: '',
-    snackBarVisible: false
+    snackBarVisible: false,
+    userId: '',
+    token: ''
 };
 
 class LayoutStore extends storeAction {
@@ -14,6 +16,11 @@ class LayoutStore extends storeAction {
         extendObservable(this, initState);
     }
 
+    @action checkUserInfo = () => {
+        const userId = localStorage.getItem("userId")
+        const token = localStorage.getItem("token")
+        this.assignData({ userId, token })
+    }
     @action show = (snackBarContent) => {
         this.assignData({ snackBarContent, snackBarVisible: true })
     }

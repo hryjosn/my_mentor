@@ -22,7 +22,7 @@ export const callSignUpUser = postData => request.post('user', postData);
 // /**
 //  * Get all current issue [GET]
 //  */
-export const callGetAllIssues = () => get('issue');
+export const callGetAllIssues = (postData) => get('issue', postData);
 /**
  *  Add new issue [POST]
  * @returns {Promise<*>}

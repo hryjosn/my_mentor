@@ -22,7 +22,7 @@ const SignUp = () => {
 
     }, []);
     const { params, paramsUpdate, onSubmit } = useStores()['SignUpStore']
-    const { email, password, phone } = params
+    const { email, password, phone,name } = params
     return (
         <>
             <SignBackground>
@@ -47,6 +47,11 @@ const SignUp = () => {
                             <InputDiv>
                                 <Input fullWidth placeholder={"Email"} value={email} onChange={e => {
                                     paramsUpdate("email", e.target.value)
+                                }}/>
+                            </InputDiv>
+                            <InputDiv>
+                                <Input fullWidth placeholder={"Real Name"} value={name} onChange={e => {
+                                    paramsUpdate("name", e.target.value)
                                 }}/>
                             </InputDiv>
 

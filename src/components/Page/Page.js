@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Snackbar } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { useStores } from "@store";
 
-const MyInput = ({ children }) => {
-    const { snackBarVisible, handleClose, snackBarContent } = useStores()['LayoutStore']
+const Page = ({ children }) => {
+
+    const { snackBarVisible, handleClose, snackBarContent, checkUserInfo } = useStores()['LayoutStore']
+    useEffect(() => {
+        checkUserInfo()
+    }, [])
     return (
         <div style={{ height: "100%" }}>
             {children}
@@ -17,4 +21,4 @@ const MyInput = ({ children }) => {
     );
 };
 
-export default MyInput;
+export default Page;

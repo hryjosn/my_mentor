@@ -4,7 +4,9 @@ import { callGetAllIssues } from '@api';
 import storeAction from '@storeAction';
 
 const initState = {
-    list: ["123"],
+    list: [""],
+    page: 1,
+    limit: 8
 };
 const api = {
     list: callGetAllIssues
@@ -19,7 +21,8 @@ class HomeStore extends storeAction {
     }
 
     @action getList = async () => {
-        const { list } = await this.api.list();
+        const { page, limit } = this;
+        const { list } = await this.api.list({ page, limit });
         this.assignData({ list })
     }
 

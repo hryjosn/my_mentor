@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import LoginModal from "./components/LoginModal";
 import IssueModal from "./components/IssueModal";
 import { useStores } from "@store";
-import { IssueContainer, IssueItem,IssueTitle,OuterLayer } from "./HomePage.styles";
+import { IssueContainer, IssueItem, IssueTitle } from "./HomePage.styles";
 
 const HomePage = () => {
     const { IssueModalStore, HomeStore } = useStores()
@@ -16,21 +16,33 @@ const HomePage = () => {
     }, []);
     return (
         <Page>
-            <Header/>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <div style={{ height: "15%" }}>
+                <Header/>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
-                <Button onClick={() => {
-                    openModal()
-                }}>
-                    I have a Issue
-                </Button>
+                    <Button onClick={() => {
+                        openModal()
+                    }}>
+                        I have a Issue
+                    </Button>
+                </div>
             </div>
+
             <IssueContainer>
-                {list?.map(item => {
+                {list?.map((item, index) => {
+                    const { description, shortDescription, title } = item
                     return (
-                        <IssueItem>
-                            <IssueTitle>{item.title}</IssueTitle>
-                            <div>{item.description}</div>
+                        <IssueItem key={`issue-box-${index}`}>
+                            <IssueTitle>{title}</IssueTitle>
+                            <div style={{ height: "50%" }}>{shortDescription || description}</div>
+                            <div style={{ textAlign: "center" }}>
+                                <Button onClick={() => {
+                                    openModal()
+                                }}>
+                                    Detail
+                                </Button>
+                            </div>
+
                         </IssueItem>
                     )
                 })}

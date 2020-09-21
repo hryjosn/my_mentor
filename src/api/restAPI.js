@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Router from 'next/router';
+
 const API_URL = process.env.API_URL;
 
 export const post = async (url, data, debug = false, timeout = 6000) => {
@@ -36,18 +37,9 @@ export const post = async (url, data, debug = false, timeout = 6000) => {
             return e;
         });
 };
-export const get = async (url, debug = false, timeout = 6000) => {
+export const get = async (endPoint, params, debug = false, timeout = 6000) => {
     const token = localStorage.getItem('token');
-    return axios({
-        method: 'GET',
-        url: API_URL + url,
-        timeout: timeout, // timeout
-        headers: {
-            'Content-Type': 'application/json; charset=UTF-8',
-            Accept: 'application/json;',
-            Authorization: `Bearer ${token}`,
-        },
-    })
+    return axios.get(API_URL + endPoint, { params })
         .then((response) => {
             if (response && debug) {
                 console.log(`------------------res:${url}------------------`);

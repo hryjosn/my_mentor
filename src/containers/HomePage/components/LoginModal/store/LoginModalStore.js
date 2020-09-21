@@ -25,7 +25,6 @@ class LoginModalStore extends storeAction {
         e.preventDefault();
         const postData = this.params;
         const res = await callLoginUser(postData);
-        console.log(res.status)
         if (res.status === 200) {
             localStorage.setItem("userId",res.data.id)
             localStorage.setItem("token",res.data.token)

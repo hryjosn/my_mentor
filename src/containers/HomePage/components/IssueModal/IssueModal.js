@@ -12,13 +12,13 @@ import styled from "@emotion/styled";
 // import { Editor, EditorState, convertToRaw } from 'draft-js';
 
 const IssueModal = () => {
-    const { visible, closeModal, onSubmit, params, paramsUpdate } = useStores()['IssueModalStore']
+    const { visible, closeModal, onSubmit, params, paramsUpdate, _id } = useStores()['IssueModalStore']
     const { title, description } = params;
-    console.log("visible",visible)
     return (
         <Modal open={visible} onClose={closeModal}>
             <div>
                 <IssueContent>
+
                     <div>
                         <span style={{ fontSize: "20px" }}>Describe your question</span>
                     </div>

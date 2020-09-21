@@ -7,19 +7,26 @@ import { useStores } from "@store";
 
 const Header = () => {
     const { openModal } = useStores()['LoginModalStore']
+    const { userId } = useStores()['LayoutStore']
+
 
     return (
         <HeaderContainer>
-            <Link href="/signup">
-                <SignUpSpan>
-                    Signup
-                </SignUpSpan>
-            </Link>
-            <span onClick={() => {
-                openModal()
-            }}>
+            {
+                userId || <>
+                    <Link href="/signup">
+                        <SignUpSpan>
+                            Signup
+                        </SignUpSpan>
+                    </Link>
+                    <span onClick={() => {
+                        openModal()
+                    }}>
                 Login
             </span>
+                </>
+            }
+
         </HeaderContainer>
     );
 };
