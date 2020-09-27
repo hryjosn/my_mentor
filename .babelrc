@@ -20,7 +20,8 @@
           "@util": "./src/util",
           "@storeAction": "./src/store/storeAction",
           "@images": "./src/images",
-          "@helpers": "./src/helpers"
+          "@helpers": "./src/helpers",
+          "@i18n": "./public/static/locales/i18n"
         }
       }
     ],

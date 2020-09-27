@@ -4,13 +4,18 @@ import storeAction from '@storeAction';
 import { callSignUpUser } from '@api';
 import { parsePhoneNumber } from 'react-phone-number-input'
 import Router from 'next/router';
+import { format, subYears } from "date-fns";
 
 const initState = {
+
     params: {
         email: "",
-        name:"",
+        name: "",
         password: "",
+        firstName: "",
+        lastName: "",
         phone: "",
+        birthday: format(subYears(new Date(), 18), "yyyy-MM-dd")
     }
 };
 
@@ -26,6 +31,7 @@ class SignUpStore extends storeAction {
         const regionNumber = parsePhoneNumber(this.params.phone).countryCallingCode;
         const phone = parsePhoneNumber(this.params.phone).nationalNumber;
         const postData = { ...this.params, regionNumber, phone };
+        postData.name = this.firstName + this.lastName;
         const res = await callSignUpUser(postData)
         if (res.status === 200) {
             alert("Sign up successfully")

@@ -13,62 +13,94 @@ import {
 } from './SignUp.styles'
 import { Input, Button } from '@components'
 import PhoneInput from 'react-phone-number-input';
-import styled from "@emotion/styled";
 import { useStores } from "@store";
+import { TextField } from "@material-ui/core";
 import Link from "next/link";
+import { withTranslation } from '@i18n';
 
-const SignUp = () => {
+const SignUp = ({ t }) => {
     useEffect(() => {
 
     }, []);
-    const { params, paramsUpdate, onSubmit } = useStores()['SignUpStore']
-    const { email, password, phone,name } = params
+    const { params, paramsUpdate, onSubmit } = useStores()['SignUpStore'];
+    const { email, password, phone, birthday,firstName,lastName } = params;
+
     return (
         <>
-            <SignBackground>
-            </SignBackground>
+            <SignBackground/>
             <SignUpForm onSubmit={e => {
                 onSubmit(e)
             }}>
                 <SignUpContainer>
                     <Link href="/">
-                        <BackButton> {`< My Mentor`}</BackButton>
+                        <BackButton> {t('back')}</BackButton>
                     </Link>
                     <SignUpContent>
                         <div>
-                            <span style={{ fontSize: "40px" }}>Sign Up</span>
+                            <span style={{ fontSize: "40px" }}>{t('signup_title')}</span>
                         </div>
                         <div>
-                            <SignUpDescription> This is something you would never read</SignUpDescription>
-                            <SignUpDescription style={{ fontWeight: "normal" }}> But if it exist would make page looks
-                                professional</SignUpDescription>
+                            <SignUpDescription>{t('sub_description_1')}</SignUpDescription>
+                            <SignUpDescription
+                                style={{ fontWeight: "normal" }}> {t('sub_description_2')}</SignUpDescription>
                         </div>
                         <InputContainer>
                             <InputDiv>
-                                <Input fullWidth placeholder={"Email"} value={email} onChange={e => {
-                                    paramsUpdate("email", e.target.value)
-                                }}/>
+                                <Input fullWidth variant="outlined" label={t('email')} placeholder={t('email')} value={email}
+                                       onChange={e => {
+                                           paramsUpdate("email", e.target.value)
+                                       }}/>
                             </InputDiv>
                             <InputDiv>
-                                <Input fullWidth placeholder={"Real Name"} value={name} onChange={e => {
-                                    paramsUpdate("name", e.target.value)
-                                }}/>
+                                <Input placeholder={t('first_name')}
+                                       label={t('first_name')}
+                                       variant="outlined"
+                                       style={{ marginRight: "2rem" }}
+                                       value={firstName}
+                                       onChange={e => {
+                                           paramsUpdate("firstName", e.target.value)
+                                       }}/>
+                                <Input placeholder={t('last_name')}
+                                       label={t('last_name')}
+                                       value={lastName}
+                                       variant="outlined"
+                                       onChange={e => {
+                                           paramsUpdate("lastName", e.target.value)
+                                       }}/>
                             </InputDiv>
 
                             <InputDiv>
                                 <Input
+                                    variant="outlined"
                                     fullWidth
-                                    placeholder={"Password"}
+                                    label={t('password')}
+                                    placeholder={t('password')}
                                     type="password"
                                     value={password}
                                     onChange={e => {
                                         paramsUpdate("password", e.target.value)
                                     }}/>
                             </InputDiv>
+                            <InputDiv>
+                                <TextField
+                                    id="date"
+                                    variant="outlined"
+                                    label="Birthday"
+                                    type="date"
+                                    fullWidth
+                                    value={birthday}
+                                    onChange={e => {
+                                        paramsUpdate("birthday", e.target.value)
+                                    }}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                />
+                            </InputDiv>
                             <PhoneInputContainer>
                                 <PhoneInput
                                     defaultCountry="TW"
-                                    placeholder={"Phone"}
+                                    placeholder={t('phone')}
                                     value={phone}
                                     onChange={value => {
                                         paramsUpdate('phone', value);
@@ -87,10 +119,7 @@ const SignUp = () => {
 
     );
 };
-
-export default observer(SignUp);
-const MySpan = styled.span`
-font-size: 72px;
-  background: -webkit-linear-gradient(#eee, #333);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;`
+SignUp.getInitialProps = async () => ({
+    namespacesRequired: ['signup'],
+})
+export default withTranslation('signup')(observer(SignUp));

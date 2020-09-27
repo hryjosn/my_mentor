@@ -12,7 +12,7 @@ const api = {
     list: callGetAllIssues
 }
 
-class HomeStore extends storeAction {
+class MyAccountStore extends storeAction {
     constructor() {
         super();
         this.api = api;
@@ -29,7 +29,7 @@ class HomeStore extends storeAction {
 
 }
 
-const store = new HomeStore();
+const store = new MyAccountStore();
 export default store;
 
 

@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Link from "next/link";
 
 export const HeaderContainer = styled.div`
    padding: 10px 24px;

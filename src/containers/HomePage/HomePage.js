@@ -4,12 +4,16 @@ import { Button, Page } from '@components';
 import Header from "./components/Header";
 import LoginModal from "./components/LoginModal";
 import IssueModal from "./components/IssueModal";
+import IssueDetailModal from "./components/IssueDetailModal";
 import { useStores } from "@store";
 import { IssueContainer, IssueItem, IssueTitle } from "./HomePage.styles";
+import { withTranslation } from '@i18n';
 
-const HomePage = () => {
-    const { IssueModalStore, HomeStore } = useStores()
+
+const HomePage = ({t}) => {
+    const { IssueModalStore, HomeStore,IssueDetailModalStore } = useStores()
     const { openModal } = IssueModalStore
+    const { assignData } = IssueDetailModalStore
     const { getList, list } = HomeStore;
     useEffect(() => {
         getList()
@@ -23,7 +27,7 @@ const HomePage = () => {
                     <Button onClick={() => {
                         openModal()
                     }}>
-                        I have a Issue
+                        {t('ask_a_question')}
                     </Button>
                 </div>
             </div>
@@ -37,22 +41,29 @@ const HomePage = () => {
                             <div style={{ height: "50%" }}>{shortDescription || description}</div>
                             <div style={{ textAlign: "center" }}>
                                 <Button onClick={() => {
-                                    openModal()
+                                    assignData({...item})
+                                    IssueDetailModalStore.openModal()
                                 }}>
-                                    Detail
+                                    {t('detail')}
+
                                 </Button>
                             </div>
 
                         </IssueItem>
                     )
                 })}
+
             </IssueContainer>
             <LoginModal/>
             <IssueModal/>
+            <IssueDetailModal/>
         </Page>
 
 
     );
 };
+HomePage.getInitialProps = async () => ({
+    namespacesRequired: ['home'],
+})
 
-export default observer(HomePage);
+export default withTranslation('home')(observer(HomePage));

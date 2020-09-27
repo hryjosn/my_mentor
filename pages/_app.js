@@ -6,9 +6,10 @@ import 'react-phone-number-input/style.css'
 import Head from 'next/head';
 require('dotenv').config();
 import 'draft-js/dist/Draft.css';
+import { appWithTranslation } from '@i18n'
 
 
-export default function MyApp(props) {
+const MyApp= (props)=> {
     const { Component, pageProps } = props;
 
     return (
@@ -37,4 +38,5 @@ export default function MyApp(props) {
         </>
     );
 }
+export default appWithTranslation(MyApp)
 

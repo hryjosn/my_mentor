@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import {
-    ModalContainer, InputContainer,
+    InputContainer,
     InputDiv,
     IssueContent,
-    IssueDescription,
 } from "./IssueModal.styles";
 import { Modal, Button, TitleInput } from "@components";
 import { useStores } from "@store";
@@ -12,7 +11,7 @@ import styled from "@emotion/styled";
 // import { Editor, EditorState, convertToRaw } from 'draft-js';
 
 const IssueModal = () => {
-    const { visible, closeModal, onSubmit, params, paramsUpdate, _id } = useStores()['IssueModalStore']
+    const { visible, closeModal, onSubmit, params, paramsUpdate } = useStores()['IssueModalStore']
     const { title, description } = params;
     return (
         <Modal open={visible} onClose={closeModal}>
@@ -39,11 +38,8 @@ const IssueModal = () => {
                             {/*</InputDiv>*/}
                             <div>Describe detail info of your issue</div>
                             <TextArea value={description} onChange={(e) => {
-
                                 paramsUpdate("description", e.target.value)
                             }}/>
-
-
                         </InputContainer>
                         <Button onClick={(e) => {
                             onSubmit(e)

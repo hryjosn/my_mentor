@@ -1,7 +1,8 @@
 import React from 'react';
 import { Modal } from '@material-ui/core';
 import styled from "@emotion/styled";
-import { MdCancel } from 'react-icons/md';
+import { GrClose } from 'react-icons/gr';
+import { IconContext } from "react-icons";
 
 const MyModal = (props) => {
     const { children, onClose } = props;
@@ -13,7 +14,7 @@ const MyModal = (props) => {
                 <MainContainer>
                     <HeaderContainer>
                         <HeaderCloseButton onClick={onClose}>
-                            <HeaderCloseIcon size={20}/>
+                            <HeaderCloseIcon size={20} />
                         </HeaderCloseButton>
                     </HeaderContainer>
                     {children}
@@ -31,14 +32,14 @@ const MainContainer = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     outline: none;
+    border-radius: 10px;
+    overflow: hidden;
+
 `
 const HeaderContainer = styled.div`
   display: flex;
-  //height: 40px;
-  //padding: 20px 5px;
-  //color: white;
-  //align-items: center;
-  //background-color: darkseagreen;
+  background-color: #FF8E53;
+  color: white;
 `;
 
 const HeaderCloseButton = styled.div`
@@ -48,6 +49,7 @@ const HeaderCloseButton = styled.div`
    justify-content: center;
 `;
 
-const HeaderCloseIcon = styled(MdCancel)`
-    color: white;
+const HeaderCloseIcon = styled(GrClose)`
+    margin: 10px;
+    fill:white;
 `;

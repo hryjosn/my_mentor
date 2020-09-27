@@ -16,6 +16,10 @@ export const callLoginUser = postData => request.post('user/login', postData);
  * 會員註冊 [POST]
  */
 export const callSignUpUser = postData => request.post('user', postData);
+/**
+ * 取得會員資訊 [GET]
+ */
+export const callGetUserInfo = () => get('user/info');
 
 /** -------------------------- 會員 end -------------------------- */
 /** -------------------------- 餐廳 -------------------------- */

@@ -17,11 +17,9 @@ const Header = ({ t }) => {
                 firstName ?
                     <>
 
-                        <Link href={"/myaccount"}>
-                            <SignUpSpan>
-                                Hi! {firstName}
-                            </SignUpSpan>
-                        </Link>
+                        <SignUpSpan>
+                            Hi! {firstName}
+                        </SignUpSpan>
                         <span onClick={() => {
                             logout();
                         }}>
