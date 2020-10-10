@@ -22,7 +22,8 @@ class HomeStore extends storeAction {
 
     @action getList = async () => {
         const { page, limit } = this;
-        const { list } = await this.api.list({ page, limit });
+        const res = await this.api.list({ page, limit });
+        const { list } = res.data;
         this.assignData({ list })
     }
 

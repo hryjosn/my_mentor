@@ -20,5 +20,8 @@ export const IssueTitle = styled.div`
   font-size: 24px;
   font-weight: bold;
   text-align: center; 
-
+`
+export const IssueDescription = styled.div`
+  width: 50%;
+  white-space: pre-wrap;
 `

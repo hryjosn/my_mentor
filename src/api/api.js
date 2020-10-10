@@ -22,17 +22,22 @@ export const callSignUpUser = postData => request.post('user', postData);
 export const callGetUserInfo = () => get('user/info');
 
 /** -------------------------- 會員 end -------------------------- */
-/** -------------------------- 餐廳 -------------------------- */
+
+/** -------------------------- 問題 -------------------------- */
 // /**
 //  * Get all current issue [GET]
 //  */
-export const callGetAllIssues = (postData) => get('issue', postData);
+export const callGetAllIssues = () => request.get('issue');
+// /**
+//  * Get issue by id [GET]
+//  */
+
+export const callGetIssueById = ({ _id }) => request.get(`issue/${_id}`);
 /**
  *  Add new issue [POST]
  * @returns {Promise<*>}
  */
 export const callAddNewIssue = (postData) => post('issue', postData);
 
-
-/** -------------------------- 餐廳 end -------------------------- */
+/** -------------------------- 問題 end -------------------------- */
 

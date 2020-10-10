@@ -34,6 +34,7 @@ const MainContainer = styled.div`
     outline: none;
     border-radius: 10px;
     overflow: hidden;
+    width: 50%;
 
 `
 const HeaderContainer = styled.div`

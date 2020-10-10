@@ -6,11 +6,14 @@ import { useStores } from "@store";
 import { withTranslation } from '@i18n';
 import styled from "@emotion/styled";
 import { HiOutlineChevronRight } from 'react-icons/hi';
+import { differenceInYears } from 'date-fns'
 
 
-
-const MyAccount = ({ t }) => {
-    const { MyAccountStore } = useStores();
+const MyAccount = (props) => {
+    const {t}=props;
+    const { LayoutStore } = useStores();
+    const { userInfo } = LayoutStore
+    const { birthday, company, description, email, experience, firstName, jobTitle, lastName } = userInfo;
     useEffect(() => {
     }, []);
     return (
@@ -23,42 +26,52 @@ const MyAccount = ({ t }) => {
                         <AccountSubtitle>其他 MyMentor 服務使用者可能會看到部分資訊。</AccountSubtitle>
                         <InfoLabel>
                             <div> 名稱</div>
-                            <div> Johnson</div>
+                            <div> {`${firstName} ${lastName}`}</div>
                             <IconContainer>
                                 <HiOutlineChevronRight fontSize={20}/>
                             </IconContainer>
                         </InfoLabel>
                         <InfoLabel>
                             <div> 年齡</div>
-                            <div> 25</div>
+                            <div> {differenceInYears(
+                                new Date(),
+                                new Date(birthday)
+                            )}</div>
+                            <IconContainer>
+                                <HiOutlineChevronRight fontSize={20}/>
+                            </IconContainer>
+                        </InfoLabel>
+                        <InfoLabel>
+                            <div> 連絡信箱</div>
+                            <div> {email}</div>
                             <IconContainer>
                                 <HiOutlineChevronRight fontSize={20}/>
                             </IconContainer>
                         </InfoLabel>
                         <InfoLabel>
                             <div> 公司名稱</div>
-                            <div> Tico Inc.</div>
+                            <div> {company}</div>
                             <IconContainer>
                                 <HiOutlineChevronRight fontSize={20}/>
                             </IconContainer>
                         </InfoLabel>
                         <InfoLabel>
-                            <div> 職稱 </div>
-                            <div> 前端工程師 </div>
+                            <div> 職稱</div>
+                            <div> {jobTitle}</div>
                             <IconContainer>
                                 <HiOutlineChevronRight fontSize={20}/>
                             </IconContainer>
                         </InfoLabel>
                         <InfoLabel>
-                            <div> 過往經歷 </div>
-                            <div> 前端工程師 </div>
+                            <div> 過往經歷</div>
+                            <div> {experience}</div>
                             <IconContainer>
                                 <HiOutlineChevronRight fontSize={20}/>
                             </IconContainer>
                         </InfoLabel>
                         <InfoLabel>
-                            <div> 其他描述 </div>
-                            <div> 3年前端工程師 </div>
+                            <div> 其他描述</div>
+                            <div> {description}</div>
                             <IconContainer>
                                 <HiOutlineChevronRight fontSize={20}/>
                             </IconContainer>
@@ -71,9 +84,6 @@ const MyAccount = ({ t }) => {
 
     );
 };
-MyAccount.getInitialProps = async () => ({
-    namespacesRequired: ['home'],
-})
 
 export default withTranslation('home')(observer(MyAccount));
 const Container = styled.div`
@@ -93,12 +103,12 @@ const FormContainer = styled.div`
   overflow: hidden;
   margin: 0 6rem;
 `
-const InfoLabel =styled.div`
+const InfoLabel = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr 1fr; 
   padding: 16px 10px;
   border-bottom: 1px solid #dadce0;
 `
-const IconContainer =styled.div`
+const IconContainer = styled.div`
   text-align: right;
 `

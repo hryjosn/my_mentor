@@ -1,12 +1,12 @@
 import React from 'react';
 import { useRouter } from "next/router";
+// import { callGetIssueById } from '@api'
 
-const Issue = (props) => {
-    const { description, title } = props?.data;
-    const router = useRouter()
-    const params = router.query.params || []
-    const issueId = params[0]
-    if (!issueId) {
+const Room = ({ props }) => {
+    const router = useRouter();
+    const params = router.query.params || [];
+    const roomId = params[0];
+    if (!roomId) {
         return (
             <div>
                 Nothing
@@ -16,10 +16,9 @@ const Issue = (props) => {
     return (
         <>
             <div>
-                title: {title}
+                {roomId}
             </div>
             <div>
-                description: {description}
             </div>
         </>
     );
@@ -51,5 +50,5 @@ const Issue = (props) => {
 //
 // }
 
-export default Issue;
+export default Room;
 

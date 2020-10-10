@@ -8,19 +8,16 @@ const initState = {
     snackBarVisible: false,
     userId: '',
     token: '',
-    birthday: "",
-    email: "",
-    firstName: "",
-    lastName: "",
-    phone: "",
+    userInfo: {}
 };
-const api ={
+const api = {
     userInfo: callGetUserInfo
 }
+
 class LayoutStore extends storeAction {
     constructor() {
         super();
-        this.api=api;
+        this.api = api;
         this.initState = initState;
         extendObservable(this, initState);
     }
@@ -28,10 +25,10 @@ class LayoutStore extends storeAction {
     @action checkUserInfo = async () => {
         const userId = localStorage.getItem("userId")
         const token = localStorage.getItem("token")
-        if(userId){
-            const res =await this.api.userInfo();
-            const {userInfo}=res;
-            this.assignData({...userInfo})
+        if (userId) {
+            const res = await this.api.userInfo();
+            const { userInfo } = res;
+            this.assignData({ userInfo })
         }
         this.assignData({ userId, token })
     }
