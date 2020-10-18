@@ -2,7 +2,6 @@ import React from 'react';
 import { Modal } from '@material-ui/core';
 import styled from "@emotion/styled";
 import { GrClose } from 'react-icons/gr';
-import { IconContext } from "react-icons";
 
 const MyModal = (props) => {
     const { children, onClose } = props;

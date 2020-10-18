@@ -26,7 +26,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
-    "react-phone-number-input": "^3.0.25"
+    "react-phone-number-input": "^3.0.25",
+    "babel-plugin-transform-remove-console": "^6.9.4"
   },
   "license": "ISC",
   "devDependencies": {

@@ -18,7 +18,9 @@ module.exports = {
         sourceType: 'module',
     },
     plugins: ['react', 'prettier'],
-    rules: {},
+    rules: {
+        "react/prop-types": 0
+    },
     settings: {
         'react': {
             'createClass': 'createReactClass', // Regex for Component Factory to use,

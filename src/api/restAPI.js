@@ -49,7 +49,7 @@ export const get = async (endPoint, params, debug = false, timeout = 6000) => {
         })
         .then((response) => {
             if (response && debug) {
-                console.log(`------------------res:${url}------------------`);
+                console.log(`------------------res:${endPoint}------------------`);
                 console.log(response.data);
             }
             if (response.status !== 200) {

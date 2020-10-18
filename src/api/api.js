@@ -27,7 +27,15 @@ export const callGetUserInfo = () => get('user/info');
 // /**
 //  * Get all current issue [GET]
 //  */
-export const callGetAllIssues = () => request.get('issue');
+export const callGetAllIssues = (postData) => {
+    if (postData) {
+        const { page, limit } = postData;
+        return request.get(`issue?page=${page}&limit=${limit}`)
+    } else {
+        return request.get(`issue`)
+    }
+
+};
 // /**
 //  * Get issue by id [GET]
 //  */

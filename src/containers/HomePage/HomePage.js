@@ -6,22 +6,36 @@ import LoginModal from "./components/LoginModal";
 import IssueModal from "./components/IssueModal";
 import IssueDetailModal from "./components/IssueDetailModal";
 import { useStores } from "@store";
-import { IssueContainer, IssueItem, IssueTitle, IssueDescription } from "./HomePage.styles";
+import { IssueContainer } from "./HomePage.styles";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TablePagination,
+    TableRow
+} from '@material-ui/core';
+
+
 import { withTranslation } from '@i18n';
 import Link from "next/link";
 
 
-const HomePage = ({t}) => {
-    const { IssueModalStore, HomeStore,IssueDetailModalStore } = useStores()
+const HomePage = ({ t }) => {
+    const { IssueModalStore, HomeStore } = useStores()
     const { openModal } = IssueModalStore
-    const { assignData } = IssueDetailModalStore
-    const { getList, list } = HomeStore;
+    const { getList, list, total, page, limit, updateData } = HomeStore;
     useEffect(() => {
         getList()
-    }, []);
+    }, [page, limit]);
+    const columns = [
+        { id: 'title', label: 'Title', minWidth: 170 },
+        { id: 'description', label: 'Description' },
+    ];
     return (
         <Page>
-            <div style={{ height: "15%" }}>
+            <div>
                 <Header/>
                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
@@ -34,25 +48,60 @@ const HomePage = ({t}) => {
             </div>
 
             <IssueContainer>
-                {list?.map((item, index) => {
-                    const { description, shortDescription, title,_id } = item;
-                    return (
-                        <IssueItem key={`issue-box-${index}`}>
-                            <IssueTitle>{title}</IssueTitle>
-                            <IssueDescription>{shortDescription || description}</IssueDescription>
-                            <div style={{ textAlign: "center" }}>
-                                <Link  href="/issue/[[issueId]]" as={`/issue/${_id}`}>
-                                    <Button>
-                                        {t('detail')}
-                                    </Button>
-                                </Link>
 
-                            </div>
-
-                        </IssueItem>
-                    )
-                })}
+                <TableContainer>
+                    <Table stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            <TableRow>
+                                {columns?.map((column) => (
+                                    <TableCell
+                                        key={column.id}
+                                        align={'left'}
+                                        style={{ minWidth: column.minWidth }}
+                                    >
+                                        {column.label}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {list.map((row, index) => {
+                                return (
+                                    <Link href="/issue/[[...params]]" as={`/issue/${row._id}`}
+                                          key={`issue-row-${index}`}>
+                                        <TableRow hover role="checkbox" tabIndex={-1}>
+                                            {columns.map((column) => {
+                                                const value = row[column.id];
+                                                return (
+                                                    <TableCell key={column.id} align={column.align}>
+                                                        {value}
+                                                    </TableCell>
+                                                );
+                                            })}
+                                        </TableRow>
+                                    </Link>
+                                );
+                            })}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[8, 25, 100]}
+                    component="div"
+                    count={total}
+                    rowsPerPage={limit}
+                    page={page}
+                    onChangePage={(e, nextPage) => {
+                        updateData("page", nextPage);
+                    }}
+                    onChangeRowsPerPage={(event) => {
+                        updateData("limit", parseInt(event.target.value, 10))
+                        updateData("page", 0);
+                    }}
+                />
             </IssueContainer>
+
+
             <LoginModal/>
             <IssueModal/>
             <IssueDetailModal/>
@@ -61,8 +110,5 @@ const HomePage = ({t}) => {
 
     );
 };
-HomePage.getInitialProps = async () => ({
-    namespacesRequired: ['home'],
-})
 
 export default withTranslation('home')(observer(HomePage));

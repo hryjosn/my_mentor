@@ -7,6 +7,7 @@ import Head from 'next/head';
 require('dotenv').config();
 import 'draft-js/dist/Draft.css';
 import { appWithTranslation } from '@i18n'
+import '@containers/MyAccount/components/Calendar/Calendar.scss'
 
 
 const MyApp= (props)=> {

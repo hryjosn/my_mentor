@@ -1,12 +1,13 @@
 import { observer } from 'mobx-react';
 import React, { useEffect } from 'react';
-import { Button, Page } from '@components';
+import {  Page } from '@components';
 import Header from "./components/Header";
 import { useStores } from "@store";
 import { withTranslation } from '@i18n';
 import styled from "@emotion/styled";
 import { HiOutlineChevronRight } from 'react-icons/hi';
 import { differenceInYears } from 'date-fns'
+import Calendar from "@containers/MyAccount/components/Calendar";
 
 
 const MyAccount = (props) => {
@@ -79,6 +80,10 @@ const MyAccount = (props) => {
                     </Container>
                 </div>
             </FormContainer>
+            <CalendarContainer>
+                <Calendar/>
+
+            </CalendarContainer>
         </Page>
 
 
@@ -88,6 +93,9 @@ const MyAccount = (props) => {
 export default withTranslation('home')(observer(MyAccount));
 const Container = styled.div`
   padding: 24px 24px 8px 24px;
+`
+const CalendarContainer = styled.div`
+  margin: 0 8rem;
 `
 const AccountTitle = styled.div`
   font-size: 1.375rem;
