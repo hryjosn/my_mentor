@@ -119,7 +119,4 @@ const SignUp = ({ t }) => {
 
     );
 };
-SignUp.getInitialProps = async () => ({
-    namespacesRequired: ['signup'],
-})
 export default withTranslation('signup')(observer(SignUp));

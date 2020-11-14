@@ -2,16 +2,20 @@
   "name": "with-mobx",
   "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon -w server.js server.js",
+    "_dev": "node start.js",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.12.1",
+    "@babel/register": "^7.12.1",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@material-ui/core": "^4.11.0",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "axios": "^0.19.2",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "date-fns": "^2.16.1",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^2.0.0",
@@ -20,14 +24,13 @@
     "mobx": "^5.15.5",
     "mobx-react": "^6.2.5",
     "next": "^9.5.3",
-    "next-i18next": "^6.0.2",
+    "next-i18next": "6.0.2",
     "next-images": "^1.4.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
-    "react-phone-number-input": "^3.0.25",
-    "babel-plugin-transform-remove-console": "^6.9.4"
+    "react-phone-number-input": "^3.0.25"
   },
   "license": "ISC",
   "devDependencies": {

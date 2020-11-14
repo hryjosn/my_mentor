@@ -1,4 +1,4 @@
-# Next.js with MobX example
+# My Mentor
 
 ## How to use
 1.with yarn

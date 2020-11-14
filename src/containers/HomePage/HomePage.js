@@ -18,11 +18,12 @@ import {
 } from '@material-ui/core';
 
 
-import { withTranslation } from '@i18n';
+import { withTranslation, useTranslation } from '@i18n';
+
 import Link from "next/link";
 
 
-const HomePage = ({ t }) => {
+const HomePage = ({t}) => {
     const { IssueModalStore, HomeStore } = useStores()
     const { openModal } = IssueModalStore
     const { getList, list, total, page, limit, updateData } = HomeStore;
