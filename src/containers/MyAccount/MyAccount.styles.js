@@ -1,24 +1,48 @@
 import styled from "@emotion/styled";
 
-export const co = styled.div`
-  display: grid;
-  padding: 2rem 5rem;
-  grid-template-columns: 1fr 1fr 1fr 1fr; 
-  grid-template-rows: 1fr 1fr; 
-  grid-gap: 1rem;
-  height: 85%;
+export const Container = styled.div`
+  padding: 24px 24px 8px 24px;
+`
+export const CalendarContainer = styled.div`
+  margin: 0 8rem;
+`
+export const AccountTitle = styled.div`
+  font-size: 1.375rem;
+`
+export const AccountSubtitle = styled.div`
+  color: #5f6368;
+  font-size: .875rem;
+`
+export const FormContainer = styled.div`
+  border-radius: 8px;
+  border: 1px solid #dadce0;
   box-sizing: border-box;
+  overflow: hidden;
+  margin: 0 6rem;
 `
-
-export const IssueItem = styled.div`
-  border: 1px #c6c4c4 solid;
-  border-radius: 10px;
-  padding: 2rem 1rem;
-  
+export const InfoLabel = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 3fr; 
+  padding: 16px 10px;
+  border-bottom: 1px solid #dadce0;
+  .label{
+     display: flex;
+     align-items: center;
+  }
+  .MuiInputBase-input{
+     height: 0.8em;
+  }
 `
-export const IssueTitle = styled.div`
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center; 
-
+export const NameInfoLabel = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  padding: 16px 10px;
+  border-bottom: 1px solid #dadce0;
+  .label{
+     display: flex;
+     align-items: center;
+  }
+  .MuiInputBase-input{
+     height: 0.8em;
+  }
 `

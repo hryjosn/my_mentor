@@ -6,6 +6,7 @@ import 'react-phone-number-input/style.css'
 import Head from 'next/head';
 require('dotenv').config();
 import 'draft-js/dist/Draft.css';
+import 'src/styles/globalStyles.scss';
 import { appWithTranslation } from '@i18n'
 import '@containers/MyAccount/components/Calendar/Calendar.scss'
 

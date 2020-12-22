@@ -12,6 +12,7 @@
         "alias": {
           "@root": "./",
           "@static": "./static",
+          "@styles": "./src/styles/styles",
           "@store": "./src/store",
           "@api": "./src/api/api",
           "@containers": "./src/containers",

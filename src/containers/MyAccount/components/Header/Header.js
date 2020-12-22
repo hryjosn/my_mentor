@@ -9,14 +9,14 @@ const { withTranslation } = i18next;
 
 const Header = ({ t }) => {
     const { openModal, logout } = useStores()['LoginModalStore']
-    const { firstName } = useStores()['LayoutStore']
+    const { userInfo } = useStores()['LayoutStore']
+    const { firstName } = userInfo
 
     return (
         <HeaderContainer>
             {
                 firstName ?
                     <>
-
                         <SignUpSpan>
                             Hi! {firstName}
                         </SignUpSpan>

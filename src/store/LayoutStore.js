@@ -8,7 +8,16 @@ const initState = {
     snackBarVisible: false,
     userId: '',
     token: '',
-    userInfo: {}
+    userInfo: {
+        birthday: "",
+        company: "",
+        description: "",
+        email: "",
+        experience: "",
+        firstName: "",
+        lastName: "",
+        jobTitle: "",
+    }
 };
 const api = {
     userInfo: callGetUserInfo
@@ -22,6 +31,10 @@ class LayoutStore extends storeAction {
         extendObservable(this, initState);
     }
 
+    @action userInfoUpdate = async (dataKey, value) => {
+        const userInfo = { ...this.userInfo, [dataKey]: value }
+        this.assignData({ userInfo })
+    }
     @action checkUserInfo = async () => {
         const userId = localStorage.getItem("userId")
         const token = localStorage.getItem("token")

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { format, addDays } from 'date-fns';
 import { Button } from '@material-ui/core';
 import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
+import { MdModeEdit } from 'react-icons/md';
+import { Input } from 'react-icons/md';
 
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 let hours = [];
@@ -21,24 +23,27 @@ const Calendar = () => {
     return (
         <div>
             <h3 className={"section-title"}>
-                    <span>
-                        Available times
-                    </span>
-            </h3>
-            <div>
-                <Button disabled={week === 0} onClick={() => {
-                    setWeek(week - 1)
-                }}>
-                    <BiChevronLeft/>
-                </Button>
-                <Button style={{ marginLeft: 0, marginRight: 10 }} onClick={() => {
-                    setWeek(week + 1)
-                }}>
-                    <BiChevronRight/>
-                </Button>
                 <span>
-                        {format(addDays(new Date(), week * 7), "yyyy-MM-dd")}
+                    Available times
+                </span>
+            </h3>
+            <div className={"d-flex justify-content-between"}>
+                <div>
+                    <Button disabled={week === 0} onClick={() => {
+                        setWeek(week - 1)
+                    }}>
+                        <BiChevronLeft/>
+                    </Button>
+                    <Button style={{ marginLeft: 0, marginRight: 10 }} onClick={() => {
+                        setWeek(week + 1)
+                    }}>
+                        <BiChevronRight/>
+                    </Button>
+                    <span>
+                            {format(addDays(new Date(), week * 7), "yyyy-MM-dd")}
                     </span>
+                </div>
+                <MdModeEdit/>
             </div>
             <div className={"at-column-box"}>
                 {DAYS.map((item, index) => {
