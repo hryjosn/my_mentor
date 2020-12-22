@@ -1,21 +1,18 @@
 /** 用於記錄各種scroll resize 或 螢幕寬度等狀態 */
-import { action, extendObservable, configure } from 'mobx';
-import { callGetAllIssues } from '@api';
+import { action, extendObservable } from 'mobx';
+import { callGetIssueById } from '@api';
 import storeAction from '@storeAction';
-configure({
-    enforceActions: "never",
-})
+
 const initState = {
-    list: [],
-    page: 1,
-    limit: 8,
-    total: 0,
+    title: "",
+    description: "",
+    author:{}
 };
 const api = {
-    list: callGetAllIssues
+    getDetail: callGetIssueById
 }
 
-class HomeStore extends storeAction {
+class IssueStore extends storeAction {
     constructor() {
         super();
         this.api = api;
@@ -23,17 +20,24 @@ class HomeStore extends storeAction {
         extendObservable(this, initState);
     }
 
+    @action init = async (id) => {
+        const res = await this.api.getDetail({ _id: id })
+        if (res.status === 200) {
+            this.assignData({ ...res?.data?.data })
+        }
+
+    }
     @action getList = async () => {
         const { page, limit } = this;
         const res = await this.api.list({ page, limit });
         const { list, total } = res.data;
-        this.assignData({ list, total })
+        this.assignData({ list:[...list], total })
     }
 
 
 }
 
-const store = new HomeStore();
+const store = new IssueStore();
 export default store;
 
 

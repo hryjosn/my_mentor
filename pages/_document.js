@@ -8,7 +8,7 @@ class MyDocument extends Document {
         return (
             <Html style={{ height: '100%', margin: '0px', padding: '0px' }}>
                 <Head>
-
+                    <link rel="shortcut icon" href="/image/favicon.png" type="image/x-icon" />
                 </Head>
                 <body>
                 <Main/>

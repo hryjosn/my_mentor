@@ -4,7 +4,7 @@ import storeAction from '@storeAction';
 import { callGetUserInfo } from '@api';
 import { parsePhoneNumber } from 'react-phone-number-input'
 import Router from 'next/router';
-import { callLoginUser } from "@/api/api";
+import { callLoginUser } from "@api";
 import * as AllStore from "@store/store";
 import { LayoutStore } from "@store";
 
@@ -27,13 +27,18 @@ class LoginModalStore extends storeAction {
     @action onSubmit = async (e) => {
         e.preventDefault();
         const postData = this.params;
-        const res = await callLoginUser(postData);
-        if (res.status === 200) {
-            localStorage.setItem("userId", res.data.id)
-            localStorage.setItem("token", res.data.token)
-            this.reset();
-            LayoutStore.checkUserInfo()
+        try {
+            const res = await callLoginUser(postData);
+            if (res.status === 200) {
+                localStorage.setItem("userId", res.data.id)
+                localStorage.setItem("token", res.data.token)
+                this.reset();
+                await LayoutStore.checkUserInfo()
+            }
+        }catch (e){
+            alert(e.response.data.msg)
         }
+
     }
 
     @action logout = async () => {

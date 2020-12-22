@@ -1,4 +1,4 @@
-import { callGetIssueById, callGetAllIssues } from "@api"
+
 
 // export async function getStaticPaths() {
 //     const res = await callGetAllIssues();

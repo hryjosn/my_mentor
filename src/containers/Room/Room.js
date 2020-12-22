@@ -1,54 +1,69 @@
-import React from 'react';
-import { useRouter } from "next/router";
-// import { callGetIssueById } from '@api'
+import React, { useEffect } from 'react';
+// import { useRouter } from "next/router";
+import { useStores } from "@store";
+import { VideoContainer, Container } from "@/containers/Room/Room.styles";
+import { observer } from 'mobx-react';
 
-const Room = ({ props }) => {
-    const router = useRouter();
-    const params = router.query.params || [];
-    const roomId = params[0];
-    if (!roomId) {
-        return (
-            <div>
-                Nothing
-            </div>
-        );
-    }
+const Room = () => {
+    // const router = useRouter();
+    // const params = router.query.params || [];
+    // const roomId = params[0];
+    const { RoomStore } = useStores()
+    const { localStream, remoteList, init, join, signalingState, iceConnectionState, pcConnectionState } = RoomStore;
+    useEffect(() => {
+        init();
+    }, [])
     return (
-        <>
+        <Container>
             <div>
-                {roomId}
+                <div>signalingState: {signalingState}</div>
+                <div>iceConnectionState: {iceConnectionState}</div>
+                <div>pcConnectionState: {pcConnectionState}</div>
             </div>
+
             <div>
+                <button type="submit" onClick={() => {
+                    join()
+                }}>Join
+                </button>
             </div>
-        </>
-    );
+            <VideoContainer>
+                <video
+                    ref={video => {
+                        if (video) {
+                            video.srcObject = localStream;
+                        }
+                    }}
+                    autoPlay
+                    playsInline
+                    muted={true}
+                />
+            </VideoContainer>
+            <VideoContainer>
+                {
+                    Object.values(remoteList).map((stream, index) => {
+                        return (
+                            <video
+                                key={`video_${index}`}
+                                ref={video => {
+                                    if (video) {
+                                        video.srcObject = stream;
+                                    }
+                                }}
+                                autoPlay
+                                playsInline
+                                muted={true}
+                            />
+                        )
+                    })
+                }
+
+            </VideoContainer>
+        </Container>
+
+    )
 };
 
-// export async function getStaticProps(context) {
-//     const res = await callGetIssueById()
-//     console.log("context>>", context)
-//     console.log("res>>", res)
-//     return {
-//         props: { hi: "test" }, // will be passed to the page component as props
-//     }
-// }
 
-// export async function getStaticPaths(ctx) {
-//     console.log("ctx>>>", ctx)
-//     // Call an external API endpoint to get posts
-//     const res = await callGetIssueById()
-//     const posts = await res.json()
-//
-//     // Get the paths we want to pre-render based on posts
-//     const paths = posts.map((post) => ({
-//         params: { id: post.id },
-//     }))
-//
-//     // We'll pre-render only these paths at build time.
-//     // { fallback: false } means other routes should 404.
-//     return { paths, fallback: false }
-//
-// }
-
-export default Room;
+export default observer(Room);
 

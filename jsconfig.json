@@ -8,7 +8,8 @@
         "module": "es6",
         "paths": {
             "@*":["src*"],
-            "@component": ["./src/component"]
+            "@component": ["./src/component"],
+            "@/component/*": ["./src/component/*"]
 
         },
         "experimentalDecorators":true

@@ -27,7 +27,6 @@ class LayoutStore extends storeAction {
         const token = localStorage.getItem("token")
         if (userId) {
             const res = await this.api.userInfo();
-            console.log("res",res)
             const { userInfo } = res;
             this.assignData({ userInfo })
         }

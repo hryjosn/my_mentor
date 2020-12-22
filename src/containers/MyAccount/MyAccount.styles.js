@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const IssueContainer = styled.div`
+export const co = styled.div`
   display: grid;
   padding: 2rem 5rem;
   grid-template-columns: 1fr 1fr 1fr 1fr; 

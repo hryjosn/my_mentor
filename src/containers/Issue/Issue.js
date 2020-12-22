@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from "next/router";
+import { observer } from 'mobx-react';
+import { useStores } from "@store";
 
-const Issue = (props) => {
-    const { description, title } = props?.data;
+const Issue = () => {
     const router = useRouter()
     const params = router.query.params || []
-    const issueId = params[0]
-    if (!issueId) {
-        return (
-            <div>
-                Nothing
-            </div>
-        );
-    }
+    const issueId = params[0];
+    const { IssueStore } = useStores();
+    const { init, title, description, author,reset } = IssueStore;
+    useEffect(() => {
+        init(issueId);
+        return()=>{
+            reset();
+        }
+    }, []);
+
     return (
         <>
             <div>
@@ -21,10 +24,13 @@ const Issue = (props) => {
             <div>
                 description: {description}
             </div>
+            <div>
+                Author: {author?.firstName + author?.lastName}
+            </div>
         </>
     );
 };
 
 
-export default Issue;
+export default observer(Issue);
 
