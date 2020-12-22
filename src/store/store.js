@@ -7,6 +7,7 @@ import IssueDetailModalStore from 'src/containers/HomePage/components/IssueDetai
 import HomeStore from 'src/containers/HomePage/store/HomeStore.js'
 import RoomStore from 'src/containers/Room/store/RoomStore.js'
 import IssueStore from 'src/containers/Issue/store/IssueStore.js'
+import MyAccountStore from 'src/containers/MyAccount/store/MyAccountStore'
 import { MobXProviderContext } from "mobx-react";
 import React from "react";
 
@@ -24,4 +25,5 @@ export {
     HomeStore,
     IssueDetailModalStore,
     RoomStore,
+    MyAccountStore
 }

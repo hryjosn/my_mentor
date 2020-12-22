@@ -3,13 +3,8 @@ import { format, addDays } from 'date-fns';
 import { Button } from '@material-ui/core';
 import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
 import { MdModeEdit } from 'react-icons/md';
-import { Input } from 'react-icons/md';
 
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-let hours = [];
-for (let i = 9; i <= 24; i++) {
-    hours.push(i);
-}
 const getDateNum = (nextDay) => {
     const today = new Date()
     let dateNum = addDays(today, nextDay).getDate()
@@ -26,25 +21,8 @@ const Calendar = () => {
                 <span>
                     Available times
                 </span>
+                <MdModeEdit size={20}/>
             </h3>
-            <div className={"d-flex justify-content-between"}>
-                <div>
-                    <Button disabled={week === 0} onClick={() => {
-                        setWeek(week - 1)
-                    }}>
-                        <BiChevronLeft/>
-                    </Button>
-                    <Button style={{ marginLeft: 0, marginRight: 10 }} onClick={() => {
-                        setWeek(week + 1)
-                    }}>
-                        <BiChevronRight/>
-                    </Button>
-                    <span>
-                            {format(addDays(new Date(), week * 7), "yyyy-MM-dd")}
-                    </span>
-                </div>
-                <MdModeEdit/>
-            </div>
             <div className={"at-column-box"}>
                 {DAYS.map((item, index) => {
                     const pastDay = week === 0 && new Date().getDay() > index

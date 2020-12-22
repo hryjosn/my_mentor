@@ -62,6 +62,34 @@ export const get = async (endPoint, params, debug = false, timeout = 6000) => {
             return e;
         });
 };
+export const patch = async (endPoint, data, debug = false, timeout = 6000) => {
+    const token = localStorage.getItem('token');
+    return axios({
+        method: 'PATCH',
+        url: API_URL + endPoint,
+        data, // post Data
+        timeout: timeout, // timeout
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            Accept: 'application/json;',
+            Authorization: `Bearer ${token}`,
+        },
+    })
+        .then((response) => {
+            if (response && debug) {
+                console.log(`------------------res:${endPoint}------------------`);
+                console.log(response.data);
+            }
+            if (response.status !== 200) {
+                return response
+            }
+            return response.data;
+        })
+        .catch((e) => {
+            catchError(e);
+            return e;
+        });
+};
 const catchError = (e) => {
     if (e?.response?.status === 401) {
         const localStorageKeys = Object.keys(localStorage);

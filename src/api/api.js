@@ -1,4 +1,4 @@
-import { post, get } from './restAPI';
+import { post, get,patch } from './restAPI';
 import axios from 'axios';
 
 const API_URL = process.env.API_URL;
@@ -20,6 +20,10 @@ export const callSignUpUser = postData => request.post('user', postData);
  * 取得會員資訊 [GET]
  */
 export const callGetUserInfo = () => get('user/info');
+/**
+ * 更新會員資訊 [Patch]
+ */
+export const callUpdateUserInfo = postData => patch('user',postData);
 
 /** -------------------------- 會員 end -------------------------- */
 
