@@ -1,7 +1,7 @@
 /** 用於記錄各種scroll resize 或 螢幕寬度等狀態 */
 import { action, extendObservable } from 'mobx';
 import storeAction from '@storeAction';
-import { callGetUserInfo,callUpdateUserInfo } from "@api";
+import { callGetUserInfo, callUpdateUserInfo } from "@api";
 
 const initState = {
     editMode: false,
@@ -35,7 +35,6 @@ class MyAccountStore extends storeAction {
     }
     /** action - params 多項改變 */
     @action userInfoAssign = (obj) => {
-        console.log("obj",obj)
         const userInfo = { ...this.userInfo, ...obj }
         this.assignData({ userInfo })
     }
@@ -52,12 +51,15 @@ class MyAccountStore extends storeAction {
     @action onSubmit = async () => {
         const userId = localStorage.getItem("userId")
         if (userId) {
-            await this.api.updateUserInfo(this.userInfo);
+            const postData = this.userInfo;
+            postData.birthday = new Date(postData.birthday).toISOString()
+            await this.api.updateUserInfo(postData);
             await this.checkUserInfo();
-            this.editMode=false;
+            this.editMode = false;
         }
     }
 }
+
 const store = new MyAccountStore();
 export default store;
 

@@ -13,11 +13,13 @@ import {
 import Calendar from "./components/Calendar";
 import { MdModeEdit } from "react-icons/md/index";
 import { useStores } from "@store";
+import ScheduleModal from "./components/ScheduleModal";
 
 const MyAccount = (props) => {
     const { t } = props;
     const { MyAccountStore } = useStores();
     const { editMode, onSubmit, checkUserInfo,updateData } = MyAccountStore;
+
     useEffect(() => {
         checkUserInfo()
     }, [])
@@ -50,6 +52,7 @@ const MyAccount = (props) => {
                     <Calendar/>
                 </Container>
             </FormContainer>
+            <ScheduleModal/>
         </Page>
     );
 };

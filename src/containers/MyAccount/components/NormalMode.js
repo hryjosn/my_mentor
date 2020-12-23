@@ -1,21 +1,13 @@
 import { observer } from 'mobx-react';
 import React, { useEffect } from 'react';
-import { Input, Button } from '@components';
 import { useStores } from "@store";
 import { withTranslation } from '@i18n';
 import { Column } from '@styles';
-import { differenceInYears } from 'date-fns'
-import DateFnsUtils from '@date-io/date-fns';
-
-import Calendar from "@containers/MyAccount/components/Calendar";
+import { differenceInYears, format } from 'date-fns'
 import {
-    Container,
-    AccountTitle,
-    AccountSubtitle,
     InfoLabel,
     NameInfoLabel
 } from '../MyAccount.styles'
-import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 
 
 const NormalMode = (props) => {
@@ -31,19 +23,22 @@ const NormalMode = (props) => {
                 <Column>
                     <NameInfoLabel>
                         <div className={"label"}> 姓氏</div>
-                        <div>{firstName}</div>
+                        <div>{lastName}</div>
                     </NameInfoLabel>
                 </Column>
                 <Column>
                     <NameInfoLabel>
                         <div className={"label"}> 名字</div>
-                        <div>{lastName}</div>
+                        <div>{firstName}</div>
                     </NameInfoLabel>
                 </Column>
             </div>
             <InfoLabel>
                 <div className={"label"}> 生日</div>
-                <div>{birthday}</div>
+                {birthday && <div>{format(
+                    new Date(birthday),
+                    'yyyy/MM/dd'
+                )}</div>}
             </InfoLabel><InfoLabel>
             <div className={"label"}> 年齡</div>
             <div> {differenceInYears(
@@ -74,7 +69,6 @@ const NormalMode = (props) => {
             </InfoLabel>
 
         </div>
-
 
 
     );

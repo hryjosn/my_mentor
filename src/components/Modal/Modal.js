@@ -4,16 +4,16 @@ import styled from "@emotion/styled";
 import { GrClose } from 'react-icons/gr';
 
 const MyModal = (props) => {
-    const { children, onClose } = props;
+    const { children, onClose, width } = props;
     return (
         <Modal
             {...props}
         >
             <div>
-                <MainContainer>
+                <MainContainer style={{ width: width || "50%" }}>
                     <HeaderContainer>
                         <HeaderCloseButton onClick={onClose}>
-                            <HeaderCloseIcon size={20} />
+                            <HeaderCloseIcon size={20}/>
                         </HeaderCloseButton>
                     </HeaderContainer>
                     {children}
@@ -33,13 +33,13 @@ const MainContainer = styled.div`
     outline: none;
     border-radius: 10px;
     overflow: hidden;
-    width: 50%;
+    
 
 `
 const HeaderContainer = styled.div`
   display: flex;
-  background-color: #FF8E53;
-  color: white;
+  background-color: #02cab9;
+  opacity: 0.7;
 `;
 
 const HeaderCloseButton = styled.div`

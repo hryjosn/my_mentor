@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { format, addDays } from 'date-fns';
-import { Button } from '@material-ui/core';
-import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
+import { addDays } from 'date-fns';
 import { MdModeEdit } from 'react-icons/md';
+import { useStores } from "@/store";
 
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const getDateNum = (nextDay) => {
+
     const today = new Date()
     let dateNum = addDays(today, nextDay).getDate()
     if (dateNum < 10) {
@@ -13,8 +13,10 @@ const getDateNum = (nextDay) => {
     }
     return dateNum
 }
+
 const Calendar = () => {
     const [week, setWeek] = useState(0)
+    const { openModal, paramsUpdate } = useStores()['ScheduleModalStore']
     return (
         <div>
             <h3 className={"section-title"}>
@@ -27,7 +29,12 @@ const Calendar = () => {
                 {DAYS.map((item, index) => {
                     const pastDay = week === 0 && new Date().getDay() > index
                     return (
-                        <div className={`root ${pastDay ? 'invalidDay' : 'validDay'}`} key={index}>
+                        <div className={`root cursor-pointer ${pastDay ? 'invalidDay' : 'validDay'}`}
+                             key={index}
+                             onClick={() => {
+                                 openModal()
+                                 paramsUpdate("date", new Date(new Date().getFullYear(), new Date().getMonth(), getDateNum(index - new Date().getDay() + week * 7)))
+                             }}>
                             <div className={"title-box"}>
                                 <div>
                                     {item}

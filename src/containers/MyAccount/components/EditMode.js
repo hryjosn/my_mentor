@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import React, { useEffect } from 'react';
-import {  Input } from '@components';
+import { Input } from '@components';
 import { useStores } from "@store";
 import { withTranslation } from '@i18n';
 import { Column } from '@styles';
@@ -28,16 +28,16 @@ const EditMode = (props) => {
                 <Column>
                     <NameInfoLabel>
                         <div className={"label"}> 姓氏</div>
-                        <Input variant="outlined" placeholder={"firstName"} value={firstName} onChange={e => {
-                            userInfoUpdate("firstName", e.target.value)
+                        <Input variant="outlined" placeholder={"lastName"} value={lastName} onChange={e => {
+                            userInfoUpdate("lastName", e.target.value)
                         }}/>
                     </NameInfoLabel>
                 </Column>
                 <Column>
                     <NameInfoLabel>
                         <div className={"label"}> 名字</div>
-                        <Input variant="outlined" placeholder={"lastName"} value={lastName} onChange={e => {
-                            userInfoUpdate("lastName", e.target.value)
+                        <Input variant="outlined" placeholder={"firstName"} value={firstName} onChange={e => {
+                            userInfoUpdate("firstName", e.target.value)
                         }}/>
                     </NameInfoLabel>
                 </Column>
