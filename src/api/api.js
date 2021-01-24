@@ -1,4 +1,4 @@
-import { post, get,patch } from './restAPI';
+import { post, get, patch } from './restAPI';
 import axios from 'axios';
 
 const API_URL = process.env.API_URL;
@@ -23,9 +23,18 @@ export const callGetUserInfo = () => get('user/info');
 /**
  * 更新會員資訊 [Patch]
  */
-export const callUpdateUserInfo = postData => patch('user',postData);
+export const callUpdateUserInfo = postData => patch('user', postData);
 
 /** -------------------------- 會員 end -------------------------- */
+
+/** -------------------------- 有空時間管理 -------------------------- */
+/**
+ * 更新有空時間 [Patch]
+ */
+export const callUpdateAvailableTime = postData => patch('availableTime', postData);
+export const callGetAvailableTimeList = postData => get('availableTime', postData);
+
+/** -------------------------- 有空時間管理 End -------------------------- */
 
 /** -------------------------- 問題 -------------------------- */
 // /**

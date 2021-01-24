@@ -15,7 +15,7 @@ export const ModalContainer = styled.div`
     
 `
 export const ScheduleContainer = styled.div`
-    padding: 0 30px;
+    padding: 0px 30px;
     min-width: 80%;
     box-sizing: border-box;
     background-color: rgba(255,255,255,0.7);

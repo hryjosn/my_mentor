@@ -6,7 +6,6 @@ export const HeaderContainer = styled.div`
    font-weight: 700;
    text-transform: uppercase;
    display: flex;
-   justify-content: flex-end;
    align-content: center;
 `
 export const SignUpSpan = styled.div`

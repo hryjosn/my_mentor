@@ -18,7 +18,7 @@ const EditMode = (props) => {
     const { t } = props;
     const { MyAccountStore } = useStores();
     const { userInfo, userInfoUpdate } = MyAccountStore
-    const { birthday, company, description, email, experience, firstName, jobTitle, lastName } = userInfo;
+    const { birthday, company, description, email, experience, firstName, jobTitle, lastName } = userInfo||{};
     useEffect(() => {
     }, []);
     return (

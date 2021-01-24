@@ -1,10 +1,13 @@
 /** 用於記錄各種scroll resize 或 螢幕寬度等狀態 */
-import { action, extendObservable } from 'mobx';
+import { action, computed, extendObservable } from 'mobx';
 import storeAction from '@storeAction';
-import { callGetUserInfo, callUpdateUserInfo } from "@api";
+import { callGetAvailableTimeList, callGetUserInfo, callUpdateUserInfo } from "@api";
+import { addDays, format, subDays } from 'date-fns';
 
 const initState = {
     editMode: false,
+    week: 0,
+    timeList: { },
     userInfo: {
         birthday: "",
         company: "",
@@ -19,6 +22,8 @@ const initState = {
 const api = {
     userInfo: callGetUserInfo,
     updateUserInfo: callUpdateUserInfo,
+    list: callGetAvailableTimeList
+
 }
 
 class MyAccountStore extends storeAction {
@@ -48,6 +53,14 @@ class MyAccountStore extends storeAction {
         }
         this.assignData({ userId, token })
     }
+
+    @computed get period() {
+        return {
+            startDate: format(subDays(new Date(), new Date().getDay() + 7 * this.week), "yyyy-MM-dd"),
+            endDate: format(addDays(new Date(), 6 - new Date().getDay() + 7 * this.week), "yyyy-MM-dd")
+        }
+    }
+
     @action onSubmit = async () => {
         const userId = localStorage.getItem("userId")
         if (userId) {
@@ -57,6 +70,10 @@ class MyAccountStore extends storeAction {
             await this.checkUserInfo();
             this.editMode = false;
         }
+    }
+    @action getList = async () => {
+        const postData = { start: this.period.startDate, end: new Date(new Date(this.period.endDate).setHours(23,59,59)) }
+        this.timeList = (await this.api.list(postData))["data"]
     }
 }
 

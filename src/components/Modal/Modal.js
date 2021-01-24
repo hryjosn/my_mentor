@@ -10,7 +10,7 @@ const MyModal = (props) => {
             {...props}
         >
             <div>
-                <MainContainer style={{ width: width || "50%" }}>
+                <MainContainer>
                     <HeaderContainer>
                         <HeaderCloseButton onClick={onClose}>
                             <HeaderCloseIcon size={20}/>
@@ -33,8 +33,11 @@ const MainContainer = styled.div`
     outline: none;
     border-radius: 10px;
     overflow: hidden;
-    
+    width: 60%;
+    @media (max-width: 796px){
+        width: 100%;
 
+    }
 `
 const HeaderContainer = styled.div`
   display: flex;

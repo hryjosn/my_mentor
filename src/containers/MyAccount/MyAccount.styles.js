@@ -18,11 +18,13 @@ export const FormContainer = styled.div`
   border: 1px solid #dadce0;
   box-sizing: border-box;
   overflow: hidden;
-  margin: 0 6rem;
+  @media(min-width: 796px){
+    margin: 0 6rem;
+  }
 `
 export const InfoLabel = styled.div`
   display: grid;
-  grid-template-columns: 1fr 3fr; 
+  grid-template-columns: 1fr 9fr; 
   padding: 16px 10px;
   border-bottom: 1px solid #dadce0;
   .label{
@@ -35,7 +37,7 @@ export const InfoLabel = styled.div`
 `
 export const NameInfoLabel = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr 4fr; 
   padding: 16px 10px;
   border-bottom: 1px solid #dadce0;
   .label{

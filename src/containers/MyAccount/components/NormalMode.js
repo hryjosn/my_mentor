@@ -14,7 +14,7 @@ const NormalMode = (props) => {
     const { t } = props;
     const { MyAccountStore } = useStores();
     const { userInfo } = MyAccountStore;
-    const { birthday, company, description, email, experience, firstName, jobTitle, lastName } = userInfo;
+    const { birthday, company, description, email, experience, firstName, jobTitle, lastName } = userInfo||{};
     useEffect(() => {
     }, []);
     return (

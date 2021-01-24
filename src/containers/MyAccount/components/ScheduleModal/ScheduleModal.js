@@ -1,63 +1,72 @@
-import React from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import {
     ScheduleContent,
 } from "./ScheduleModal.styles";
 import { Modal } from "@components";
 import { useStores } from "@store";
 import { observer } from "mobx-react";
-import styled from "@emotion/styled";
 import { format } from "date-fns";
-import Slider from "@material-ui/core/Slider";
 import { addHours } from 'date-fns';
+import Button from './components/Button';
+import { Button as SubmitButton } from '@components';
 
 const ScheduleModal = () => {
-    const { visible, closeModal, params } = useStores()['ScheduleModalStore']
+    const { ScheduleModalStore } = useStores()
+    const { visible, closeModal, params, onSubmit } = ScheduleModalStore
     const { date } = params
-    const [value, setValue] = React.useState([0, 3]);
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-    console.log(value);
-
-    function valuetext(value) {
-        return format(addHours(date, 9 + value), "HH:mm");
-    }
-
-    const marks = [];
-
-    if (date) {
-        for (let i = 0; i <= 12; i++) {
-            marks.push({ value: i, label: format(addHours(date, 9 + i), "HH:mm") });
+    const [timeList, setTimeList] = useState([])
+    useEffect(() => {
+        let list = [];
+        for (let i = 9; i <= 20; i++) {
+            if (date) {
+                list.push({
+                    value: addHours(new Date(new Date(date).setHours(0, 0, 0, 0)), i),
+                    label: format(addHours(new Date(new Date(date).setHours(0, 0, 0, 0)), i), "HH:mm"),
+                    selected: false,
+                });
+            }
         }
+        setTimeList([...list])
+    }, [date])
+
+
+    const handleClick = (item, index) => {
+        const copyList = timeList.slice();
+        copyList[index] = { ...item, selected: !item.selected }
+        setTimeList(copyList)
     }
 
     return (
-        <Modal open={visible} onClose={closeModal} width={"100%"}>
+        <Modal open={visible} width={"50%"} onClose={() => {
+            closeModal();
+            const copyList = timeList.map(item => {
+                    return { ...item, selected: false }
+                }
+            )
+            setTimeList(copyList);
+        }}>
             <div>
                 <ScheduleContent>
-                    {date && <div>{format(date, "yyyy/MM/dd")}</div>}
-                    <Slider
-                        value={value}
-                        onChange={handleChange}
-                        valueLabelDisplay="always"
-                        max={12}
-                        marks={marks}
-                        // aria-labelledby="range-slider"
-                        valueLabelFormat={valuetext}
-                        getAriaLabel={valuetext}
-                    />
-                </ScheduleContent>
-                <div className={"text-center"}>
-                    <span>
-                        {value.map((value, index) => {
-                            return (
-                                <span
-                                    key={`dateTime${index}`}>{format(addHours(date, 9 + value), "HH:mm")} {index === 0 && "- "}</span>
-                            )
-                        })}
-                    </span>
+                    <form onSubmit={async (e) => {
+                        await onSubmit(e, timeList);
+                    }}>
+                        <div>{format(date || new Date(), "yyyy-MM-dd")}</div>
+                        <div>
+                            {timeList.map((item, index) =>
+                                <Button style={{ backgroundColor: item.selected ? "#02cab9" : "" }}
+                                        key={`MorningButton_${index}`}
+                                        onClick={() => {
+                                            handleClick(item, index)
+                                        }}>
+                                    {item.label}
+                                </Button>)}
+                        </div>
+                        <SubmitButton onClick={(e) => {
+                            onSubmit(e, timeList)
+                        }}>Submit</SubmitButton>
+                    </form>
 
-                </div>
+                </ScheduleContent>
             </div>
 
 
@@ -66,8 +75,3 @@ const ScheduleModal = () => {
 };
 
 export default observer(ScheduleModal);
-const TextArea = styled.textarea`
-    resize: none;
-    width: 100%;
-    height: 10rem;
-`

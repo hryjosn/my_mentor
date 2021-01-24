@@ -14,14 +14,20 @@ import Calendar from "./components/Calendar";
 import { MdModeEdit } from "react-icons/md/index";
 import { useStores } from "@store";
 import ScheduleModal from "./components/ScheduleModal";
+import Router from 'next/router';
 
 const MyAccount = (props) => {
     const { t } = props;
     const { MyAccountStore } = useStores();
-    const { editMode, onSubmit, checkUserInfo,updateData } = MyAccountStore;
+    const { editMode, onSubmit, checkUserInfo, updateData, getList } = MyAccountStore;
 
     useEffect(() => {
-        checkUserInfo()
+        checkUserInfo();
+        getList()
+        const userId = localStorage.getItem("userId")
+        if (!userId) {
+            Router.push("/")
+        }
     }, [])
     return (
         <Page>

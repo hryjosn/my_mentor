@@ -4,42 +4,22 @@ import Link from "next/link";
 import { useStores } from "@store";
 import { observer } from 'mobx-react';
 import i18next from '@i18n';
+import Router from 'next/router';
+import { IoIosArrowBack } from 'react-icons/io';
 
 const { withTranslation } = i18next;
 
 const Header = ({ t }) => {
-    const { openModal, logout } = useStores()['LoginModalStore']
     const { userInfo } = useStores()['LayoutStore']
-    const { firstName } = userInfo
+    if (!userInfo) {
+        Router.push("/")
+    }
 
     return (
         <HeaderContainer>
-            {
-                firstName ?
-                    <>
-                        <SignUpSpan>
-                            Hi! {firstName}
-                        </SignUpSpan>
-                        <span onClick={() => {
-                            logout();
-                        }}>
-                            {t("logout")}
-                        </span>
-                    </> :
-                    <>
-                        <Link href="/signup">
-                            <SignUpSpan>
-                                {t('sign_up')}
-                            </SignUpSpan>
-                        </Link>
-                        <span onClick={() => {
-                            openModal()
-                        }}>
-                            {t("sign_in")}
-                        </span>
-                    </>
-            }
-
+            <IoIosArrowBack className={"cursor-pointer"} size={30} onClick={()=>{
+                Router.push("/")
+            }}/>
         </HeaderContainer>
     );
 };

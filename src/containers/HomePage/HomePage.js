@@ -12,12 +12,24 @@ import {
 } from '@material-ui/core';
 import { format } from 'date-fns';
 import Router from 'next/router';
-
 import { DataGrid } from '@material-ui/data-grid';
-
-
 import { withTranslation } from '@i18n';
-
+const columns = [
+    { field: 'title', headerName: 'Title', width: 140 },
+    { field: 'description', headerName: 'Description', width: 150 },
+    {
+        field: 'author',
+        headerName: 'Author',
+        width: 200,
+        valueFormatter: (rowData) => rowData.value.firstName + rowData.value.lastName
+    },
+    {
+        field: 'updatedAt',
+        headerName: 'Update Time',
+        width: 200,
+        valueFormatter: (rowData) => format(new Date(rowData.value), "yyyy-MM-dd hh:mm:ss")
+    },
+];
 
 const HomePage = ({ t }) => {
     const { IssueModalStore, HomeStore } = useStores()
@@ -27,24 +39,8 @@ const HomePage = ({ t }) => {
         getList()
     }, [page, limit]);
     const { userInfo } = useStores()['LayoutStore']
-    const { _id } = userInfo;
+    const { _id } = userInfo || {};
 
-    const columns = [
-        { field: 'title', headerName: 'Title', width: 140 },
-        { field: 'description', headerName: 'Description', width: 150 },
-        {
-            field: 'author',
-            headerName: 'Author',
-            width: 200,
-            valueFormatter: (rowData) => rowData.value.firstName + rowData.value.lastName
-        },
-        {
-            field: 'updatedAt',
-            headerName: 'Update Time',
-            width: 200,
-            valueFormatter: (rowData) => format(new Date(rowData.value), "yyyy-MM-dd hh:mm:ss")
-        },
-    ];
     return (
         <Page>
             <div>
@@ -70,14 +66,15 @@ const HomePage = ({ t }) => {
                             columns={columns}
                             hideFooterSelectedRowCount={true}
                             onRowClick={data => {
-                                const { row } = data
+                                const { row } = data;
+
                                 Router.push(`/issue/${row.id}`)
                             }}
                             page={page}
                             onPageChange={(params) => {
                                 updateData("page", params.page);
                             }}
-                            onPageSizeChange={(params)=>{
+                            onPageSizeChange={(params) => {
                                 updateData("page", 1);
                                 updateData("limit", params.pageSize);
 
