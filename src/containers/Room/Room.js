@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 // import { useRouter } from "next/router";
 import { useStores } from "@store";
-import { VideoContainer, Container } from "@/containers/Room/Room.styles";
+import { VideoContainer, Container } from "@containers/Room/Room.styles";
 import { observer } from 'mobx-react';
 
 const Room = () => {

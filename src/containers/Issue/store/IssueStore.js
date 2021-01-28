@@ -6,7 +6,7 @@ import storeAction from '@storeAction';
 const initState = {
     title: "",
     description: "",
-    author:{}
+    author: {}
 };
 const api = {
     getDetail: callGetIssueById
@@ -24,6 +24,7 @@ class IssueStore extends storeAction {
         const res = await this.api.getDetail({ _id: id })
         if (res.status === 200) {
             this.assignData({ ...res?.data?.data })
+            console.log("res?.data?.data>", res?.data?.data?.author._id)
         }
 
     }
@@ -31,7 +32,7 @@ class IssueStore extends storeAction {
         const { page, limit } = this;
         const res = await this.api.list({ page, limit });
         const { list, total } = res.data;
-        this.assignData({ list:[...list], total })
+        this.assignData({ list: [...list], total })
     }
 
 

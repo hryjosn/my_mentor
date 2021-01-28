@@ -7,12 +7,16 @@
         "target": "ES6",
         "module": "es6",
         "paths": {
-            "@*":["src*"],
-            "@component": ["./src/component"],
-            "@/component/*": ["./src/component/*"]
-
+            "@*": [
+                "src*"
+            ],
+            "@components": [
+                "./src/components"
+            ],
+            "@/components/*": [
+                "./src/components/*"
+            ]
         },
-        "experimentalDecorators":true
-}
-
+        "experimentalDecorators": true
+    }
 }

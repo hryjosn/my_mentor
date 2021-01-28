@@ -1,17 +1,16 @@
 import React from 'react'
 import { Provider } from 'mobx-react'
 import * as stores from '../src/store'
-import 'mobx-react/batchingForReactDom';
 import 'react-phone-number-input/style.css'
 import Head from 'next/head';
 require('dotenv').config();
 import 'draft-js/dist/Draft.css';
 import 'src/styles/globalStyles.scss';
 import { appWithTranslation } from '@i18n'
-import '@containers/MyAccount/components/Calendar/Calendar.scss'
+import '@components/Calendar/Calendar.scss'
 
 
-const MyApp= (props)=> {
+const MyApp = (props) => {
     const { Component, pageProps } = props;
 
     return (
@@ -32,7 +31,7 @@ const MyApp= (props)=> {
                   }
                 `}</style>
                 <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:700' rel='stylesheet'
-                      type='text/css'/>
+                    type='text/css' />
                 {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                 <Component {...pageProps} />
             </Provider>

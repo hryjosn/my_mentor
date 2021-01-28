@@ -33,6 +33,7 @@ export const callUpdateUserInfo = postData => patch('user', postData);
  */
 export const callUpdateAvailableTime = postData => patch('availableTime', postData);
 export const callGetAvailableTimeList = postData => get('availableTime', postData);
+export const callGetAvailableTimeListById = ({ _id, ...postData }) => get(`availableTime/${_id}`, postData);
 
 /** -------------------------- 有空時間管理 End -------------------------- */
 

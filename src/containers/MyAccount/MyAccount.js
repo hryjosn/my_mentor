@@ -10,7 +10,7 @@ import {
     Container,
     AccountTitle, AccountSubtitle,
 } from './MyAccount.styles'
-import Calendar from "./components/Calendar";
+import Calendar from "@components/Calendar";
 import { MdModeEdit } from "react-icons/md/index";
 import { useStores } from "@store";
 import ScheduleModal from "./components/ScheduleModal";
@@ -18,8 +18,9 @@ import Router from 'next/router';
 
 const MyAccount = (props) => {
     const { t } = props;
-    const { MyAccountStore } = useStores();
-    const { editMode, onSubmit, checkUserInfo, updateData, getList } = MyAccountStore;
+    const { MyAccountStore, CalendarStore } = useStores();
+    const { editMode, onSubmit, checkUserInfo, updateData } = MyAccountStore;
+    const { getList } = CalendarStore;
 
     useEffect(() => {
         checkUserInfo();
@@ -31,7 +32,7 @@ const MyAccount = (props) => {
     }, [])
     return (
         <Page>
-            <Header/>
+            <Header />
             <FormContainer>
                 <Container>
                     <div className={"d-flex"}>
@@ -47,18 +48,18 @@ const MyAccount = (props) => {
                                     }}>{t('save')}</Button> :
                                     <MdModeEdit size={20} onClick={() => {
                                         updateData("editMode", !editMode)
-                                    }}/>
+                                    }} />
                             }
                         </span>
 
                     </div>
                     {
-                        editMode ? <EditMode/> : <NormalMode/>
+                        editMode ? <EditMode /> : <NormalMode />
                     }
-                    <Calendar/>
+                    <Calendar />
                 </Container>
             </FormContainer>
-            <ScheduleModal/>
+            <ScheduleModal />
         </Page>
     );
 };

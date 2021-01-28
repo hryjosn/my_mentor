@@ -3,7 +3,7 @@ import { action, extendObservable } from 'mobx';
 import storeAction from '@storeAction';
 import { callUpdateAvailableTime } from '@api';
 import { format } from "date-fns";
-import MyAccountStore from "src/containers/MyAccount/store/MyAccountStore";
+import CalendarStore from "@components/Calendar/store/CalendarStore"
 
 const initState = {
     visible: false,
@@ -30,7 +30,7 @@ class ScheduleModalStore extends storeAction {
         const postData = { timeList: formattedTimeList, date: format(this.params.date, "yyyy-MM-dd") }
         await this.api.update(postData);
         this.visible = false;
-        MyAccountStore.getList()
+        CalendarStore.getList()
     }
 
 

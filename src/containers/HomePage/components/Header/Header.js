@@ -10,7 +10,7 @@ const { withTranslation } = i18next;
 const Header = ({ t }) => {
     const { openModal, logout } = useStores()['LoginModalStore']
     const { userInfo } = useStores()['LayoutStore']
-    const { firstName } = userInfo
+    const { firstName } = userInfo || {}
 
     return (
         <HeaderContainer>

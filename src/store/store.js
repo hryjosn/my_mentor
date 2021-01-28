@@ -9,6 +9,7 @@ import RoomStore from 'src/containers/Room/store/RoomStore.js'
 import IssueStore from 'src/containers/Issue/store/IssueStore.js'
 import MyAccountStore from 'src/containers/MyAccount/store/MyAccountStore'
 import ScheduleModalStore from 'src/containers/MyAccount/components/ScheduleModal/store/ScheduleModalStore'
+import CalendarStore from '@components/Calendar/store/CalendarStore'
 import { MobXProviderContext } from "mobx-react";
 import React from "react";
 
@@ -27,5 +28,6 @@ export {
     IssueDetailModalStore,
     RoomStore,
     MyAccountStore,
-    ScheduleModalStore
+    ScheduleModalStore,
+    CalendarStore
 }

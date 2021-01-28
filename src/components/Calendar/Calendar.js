@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { addDays, format } from 'date-fns';
-import { useStores } from "@/store";
+import { MdModeEdit } from 'react-icons/md';
+import { useStores } from "@store";
 import Button from '@material-ui/core/Button';
 import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
 import { observer } from "mobx-react";
@@ -8,7 +9,7 @@ import { observer } from "mobx-react";
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const Calendar = () => {
     const { openModal, paramsUpdate } = useStores()['ScheduleModalStore']
-    const { week, assignData, period, timeList } = useStores()['MyAccountStore']
+    const { week, assignData, period, timeList } = useStores()['CalendarStore']
     const { startDate, endDate } = period
     return (
         <div>
@@ -21,12 +22,12 @@ const Calendar = () => {
                 <Button disabled={week === 0} onClick={() => {
                     assignData({ week: week - 1 })
                 }}>
-                    <BiChevronLeft/>
+                    <BiChevronLeft />
                 </Button>
                 <Button style={{ marginLeft: 0, marginRight: 10 }} onClick={() => {
                     assignData({ week: week + 1 })
                 }}>
-                    <BiChevronRight/>
+                    <BiChevronRight />
                 </Button>
                 <span>
                     {startDate} - {endDate}
@@ -39,11 +40,11 @@ const Calendar = () => {
                     return (
                         <div key={`Day_${index}`} className={"flex-grow-1"}>
                             <div className={`root cursor-pointer ${pastDay ? 'invalidDay' : 'validDay'}`}
-                                 key={index}
-                                 onClick={() => {
-                                     openModal()
-                                     paramsUpdate("date", currentDate.setHours(0, 0, 0, 0))
-                                 }}>
+                                key={index}
+                                onClick={() => {
+                                    openModal()
+                                    paramsUpdate("date", currentDate.setHours(0, 0, 0, 0))
+                                }}>
                                 <div className={"title-box"}>
                                     <div>
                                         {item}
