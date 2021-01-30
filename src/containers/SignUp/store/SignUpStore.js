@@ -5,6 +5,7 @@ import { callSignUpUser } from '@api';
 import { parsePhoneNumber } from 'react-phone-number-input'
 import Router from 'next/router';
 import { format, subYears } from "date-fns";
+import { LoginModalStore, LayoutStore } from "@store";
 
 const initState = {
 
@@ -28,15 +29,25 @@ class SignUpStore extends storeAction {
 
     @action onSubmit = async (e) => {
         e.preventDefault();
-        const regionNumber = parsePhoneNumber(this.params.phone).countryCallingCode;
-        const phone = parsePhoneNumber(this.params.phone).nationalNumber;
+        const regionNumber = parsePhoneNumber(this.params.phone)?.countryCallingCode;
+        const phone = parsePhoneNumber(this.params.phone)?.nationalNumber;
         const postData = { ...this.params, regionNumber, phone };
-        postData.name = this.firstName + this.lastName;
-        const res = await callSignUpUser(postData)
-        if (res.status === 200) {
-            alert("Sign up successfully")
-            Router.push("/")
+        postData.name = this.params.firstName + this.params.lastName;
+
+        try {
+            const res = await callSignUpUser(postData)
+
+            if (res.status === 200) {
+                const { email, password } = this.params
+                await LoginModalStore.login({ email, password })
+                await Router.push("/")
+            }
+        } catch (e) {
+            if (e?.response?.status === 301) {
+                alert("The email or phone was registered")
+            }
         }
+
 
     }
 

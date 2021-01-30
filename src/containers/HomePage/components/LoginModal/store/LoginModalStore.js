@@ -1,9 +1,6 @@
 /** 用於記錄各種scroll resize 或 螢幕寬度等狀態 */
 import { action, extendObservable } from 'mobx';
 import storeAction from '@storeAction';
-import { callGetUserInfo } from '@api';
-import { parsePhoneNumber } from 'react-phone-number-input'
-import Router from 'next/router';
 import { callLoginUser } from "@api";
 import * as AllStore from "@store/store";
 import { LayoutStore } from "@store";
@@ -26,19 +23,20 @@ class LoginModalStore extends storeAction {
 
     @action onSubmit = async (e) => {
         e.preventDefault();
-        const postData = this.params;
+        await this.login(this.params)
+        this.reset();
+    }
+    async login(postData) {
         try {
             const res = await callLoginUser(postData);
             if (res.status === 200) {
                 localStorage.setItem("userId", res.data.id)
                 localStorage.setItem("token", res.data.token)
-                this.reset();
                 await LayoutStore.checkUserInfo()
             }
-        }catch (e){
+        } catch (e) {
             alert(e.response.data.msg)
         }
-
     }
 
     @action logout = async () => {
