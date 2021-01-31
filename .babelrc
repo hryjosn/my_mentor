@@ -22,7 +22,8 @@
           "@storeAction": "./src/store/storeAction",
           "@images": "./src/images",
           "@helpers": "./src/helpers",
-          "@i18n": "./public/static/locales/i18n"
+          "@i18n": "./public/static/locales/i18n",
+          "@utils": "./src/utils"
         }
       }
     ],

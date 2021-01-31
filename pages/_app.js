@@ -7,7 +7,6 @@ require('dotenv').config();
 import 'draft-js/dist/Draft.css';
 import 'src/styles/globalStyles.scss';
 import { appWithTranslation } from '@i18n'
-import '@components/Calendar/Calendar.scss'
 
 
 const MyApp = (props) => {

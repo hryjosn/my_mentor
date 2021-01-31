@@ -20,7 +20,7 @@ const MyAccount = (props) => {
     const { t } = props;
     const { MyAccountStore, CalendarStore } = useStores();
     const { editMode, onSubmit, checkUserInfo, updateData } = MyAccountStore;
-    const { getList } = CalendarStore;
+    const { getList, week } = CalendarStore;
 
     useEffect(() => {
         checkUserInfo();
@@ -29,7 +29,7 @@ const MyAccount = (props) => {
         if (!userId) {
             Router.push("/")
         }
-    }, [])
+    }, [week])
     return (
         <Page>
             <Header />

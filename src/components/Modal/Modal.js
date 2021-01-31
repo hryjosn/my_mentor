@@ -41,8 +41,6 @@ const MainContainer = styled.div`
 `
 const HeaderContainer = styled.div`
   display: flex;
-  background-color: #02cab9;
-  opacity: 0.7;
 `;
 
 const HeaderCloseButton = styled.div`

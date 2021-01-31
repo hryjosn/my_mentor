@@ -92,6 +92,7 @@ export const patch = async (endPoint, data, debug = false, timeout = 6000) => {
 };
 const catchError = (e) => {
     console.log("catchError")
+    console.log("msg:", e)
     if (e?.response?.status === 401) {
         const localStorageKeys = Object.keys(localStorage);
         if (localStorageKeys.length > 0) {

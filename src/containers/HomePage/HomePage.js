@@ -33,7 +33,7 @@ const columns = [
 
 const HomePage = ({ t }) => {
     const { IssueModalStore, HomeStore } = useStores()
-    const { openModal } = IssueModalStore
+    const { openModal,assignData } = IssueModalStore
     const { getList, list, total, page, limit, updateData } = HomeStore;
     useEffect(() => {
         getList()

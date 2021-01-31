@@ -9,7 +9,6 @@ import { dayFormatter } from "@utils/format";
 
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const Calendar = () => {
-    const { openModal, paramsUpdate } = useStores()['ScheduleModalStore']
     const { week, assignData, timeList } = useStores()['CalendarStore']
     const [selectedDate, setSelectedDate] = useState(new Date().setHours(0, 0, 0, 0));
     return (
@@ -39,11 +38,7 @@ const Calendar = () => {
                             }}>
                                 <div
                                     className={`root cursor-pointer ${differenceInDays(selectedDate, currentDate.setHours(0, 0, 0, 0)) === 0 ? 'validDay' : 'invalidDay'}`}
-                                    key={index}
-                                    onClick={() => {
-                                        // openModal()
-                                        paramsUpdate("date", currentDate.setHours(0, 0, 0, 0))
-                                    }}>
+                                    key={index}>
                                     <div className={`title-box`}>
                                         <div>
                                             {item}
@@ -54,16 +49,19 @@ const Calendar = () => {
                                     </div>
 
                                 </div>
-                                <div>
-                                    {timeList?.[format(selectedDate, "yyyy-MM-dd")]?.map((item, index) => <div
-                                        key={`time_${index}`}>{(format(new Date(item.time), "HH:mm"))}</div>)}
-                                </div>
+                                {/*<div>*/}
+                                {/*    {timeList?.[format(selectedDate, "yyyy-MM-dd")]?.map((item, index) => <div*/}
+                                {/*        key={`time_${index}`}>{(format(new Date(item.time), "HH:mm"))}</div>)}*/}
+                                {/*</div>*/}
                             </div>
                         )
                     }
-
                 })}
             </ColumnBox>
+            <div>
+                {timeList?.[format(selectedDate, "yyyy-MM-dd")]?.map((item, index) => <div
+                    key={`time_${index}`}>{(format(new Date(item.time), "HH:mm"))}</div>)}
+            </div>
         </div>
     );
 }

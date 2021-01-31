@@ -1,15 +1,15 @@
 /** 此處定義全部的 store */
-import SignUpStore from 'src/containers/SignUp/store/SignUpStore.js'
+import SignUpStore from 'src/containers/SignUp/store/SignUpStore'
 import LayoutStore from './LayoutStore'
-import LoginModalStore from 'src/containers/HomePage/components/LoginModal/store/LoginModalStore.js'
-import IssueModalStore from 'src/containers/HomePage/components/IssueModal/store/IssueModalStore.js'
-import IssueDetailModalStore from 'src/containers/HomePage/components/IssueDetailModal/store/IssueDetailModalStore.js'
-import HomeStore from 'src/containers/HomePage/store/HomeStore.js'
-import RoomStore from 'src/containers/Room/store/RoomStore.js'
-import IssueStore from 'src/containers/Issue/store/IssueStore.js'
+import LoginModalStore from 'src/containers/HomePage/components/LoginModal/store/LoginModalStore'
+import IssueModalStore from 'src/containers/HomePage/components/IssueModal/store/IssueModalStore'
+import IssueDetailModalStore from 'src/containers/HomePage/components/IssueDetailModal/store/IssueDetailModalStore'
+import HomeStore from 'src/containers/HomePage/store/HomeStore'
+import RoomStore from 'src/containers/Room/store/RoomStore'
+import IssueStore from 'src/containers/Issue/store/IssueStore'
 import MyAccountStore from 'src/containers/MyAccount/store/MyAccountStore'
-import ScheduleModalStore from 'src/containers/MyAccount/components/ScheduleModal/store/ScheduleModalStore'
 import CalendarStore from '@components/Calendar/store/CalendarStore'
+import ScheduleModalStore from '@containers/Issue/components/store/ScheduleModalStore'
 import { MobXProviderContext } from "mobx-react";
 import React from "react";
 
@@ -29,5 +29,5 @@ export {
     RoomStore,
     MyAccountStore,
     ScheduleModalStore,
-    CalendarStore
+    CalendarStore,
 }

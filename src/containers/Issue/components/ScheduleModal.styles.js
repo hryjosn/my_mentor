@@ -14,13 +14,13 @@ export const ModalContainer = styled.div`
     right: 0;
     
 `
-export const ScheduleContainer = styled.div`
+export const IssueContainer = styled.div`
     padding: 0px 30px;
     min-width: 80%;
     box-sizing: border-box;
     background-color: rgba(255,255,255,0.7);
 `
-export const ScheduleContent = styled.div` 
+export const IssueContent = styled.div` 
     text-align: center;
     box-sizing: border-box;
     padding: 60px 3rem;
@@ -36,11 +36,11 @@ export const InputDiv = styled.div`
 export const BackButton = styled.div` 
     cursor: pointer;
 `
-export const ScheduleDescription = styled.div` 
+export const IssueDescription = styled.div` 
     font-size: 10px;
     color: gray;
 `
-export const ScheduleSpan = styled.div`
+export const IssueSpan = styled.div`
    margin-right: 20px;
    cursor: pointer;
 `
