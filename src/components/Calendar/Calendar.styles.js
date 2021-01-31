@@ -8,24 +8,18 @@ export const SectionTitle = styled.h3`
 export const ColumnBox = styled.div`
   display: flex;
   text-align: center;
-  padding: 15px 20px;
-  font-size:20px;
-  font-weight: bold;
-  .validDay {
-    background-color: #7d61ed;
-    color: white;
-    border-radius: 10px;
+  padding: 15px 0;
+  @media (max-width: 1023px) {
+    font-size: 0.75rem;
   }
 
-  .invalidDay {
-    color: black
-  }
   .root {
     flex: 1;
     margin: 0 5px;
 
     .title-box {
       padding: 10px 0;
+      color: #484848;
     }
 
     .time-list {
@@ -35,19 +29,20 @@ export const ColumnBox = styled.div`
         font-weight: 700;
         &.validTime {
           color: #02cab9;
+
         }
       }
     }
   }
-
   
-
   .line {
     width: 112px;
     height: 47px;
     background-color: aqua;
     border-radius: 5px 0 0 5px;
   }
-  
 `
+
+
+
 

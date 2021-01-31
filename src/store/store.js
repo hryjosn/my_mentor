@@ -8,6 +8,7 @@ import HomeStore from 'src/containers/HomePage/store/HomeStore'
 import RoomStore from 'src/containers/Room/store/RoomStore'
 import IssueStore from 'src/containers/Issue/store/IssueStore'
 import MyAccountStore from 'src/containers/MyAccount/store/MyAccountStore'
+import EditTimeModalStore from 'src/containers/MyAccount/components/EditTimeModal/store/EditTimeModalStore'
 import CalendarStore from '@components/Calendar/store/CalendarStore'
 import ScheduleModalStore from '@containers/Issue/components/store/ScheduleModalStore'
 import { MobXProviderContext } from "mobx-react";
@@ -30,4 +31,5 @@ export {
     MyAccountStore,
     ScheduleModalStore,
     CalendarStore,
+    EditTimeModalStore
 }

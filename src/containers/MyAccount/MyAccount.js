@@ -13,7 +13,7 @@ import {
 import Calendar from "@components/Calendar";
 import { MdModeEdit } from "react-icons/md/index";
 import { useStores } from "@store";
-import ScheduleModal from "./components/ScheduleModal";
+import EditTimeModal from "./components/EditTimeModal";
 import Router from 'next/router';
 
 const MyAccount = (props) => {
@@ -59,7 +59,7 @@ const MyAccount = (props) => {
                     <Calendar />
                 </Container>
             </FormContainer>
-            <ScheduleModal />
+            <EditTimeModal />
         </Page>
     );
 };
